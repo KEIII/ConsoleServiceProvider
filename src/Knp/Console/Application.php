@@ -1,0 +1,55 @@
+<?php
+
+namespace Knp\Console;
+
+use Silex\Application as SilexApplication;
+use Symfony\Component\Console\Application as BaseApplication;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+/**
+ * Console Application
+ */
+class Application extends BaseApplication
+{
+    /**
+     * @var SilexApplication
+     */
+    private $silex_app;
+
+    /**
+     * Constructor.
+     * @param SilexApplication $app
+     */
+    public function __construct(SilexApplication $app)
+    {
+        $name = isset($app['console.name']) ? $app['console.name'] : null;
+        $version = isset($app['console.version']) ? $app['console.version'] : null;
+
+        parent::__construct($name, $version);
+
+        $this->silex_app = $app;
+    }
+
+    /**
+     * @return SilexApplication
+     */
+    public function getSilexApplication()
+    {
+        return $this->silex_app;
+    }
+
+    /**
+     * Runs the current application.
+     * @param InputInterface  $input  An Input instance
+     * @param OutputInterface $output An Output instance
+     * @return int 0 if everything went fine, or an error code
+     * @throws \Exception When doRun returns Exception
+     */
+    public function run(InputInterface $input = null, OutputInterface $output = null)
+    {
+        $this->silex_app->boot();
+
+        return parent::run($input, $output);
+    }
+}
