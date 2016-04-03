@@ -40,15 +40,11 @@ class Application extends BaseApplication
     }
 
     /**
-     * Runs the current application.
-     * @param InputInterface  $input  An Input instance
-     * @param OutputInterface $output An Output instance
-     * @return int 0 if everything went fine, or an error code
-     * @throws \Exception When doRun returns Exception
+     * {@inheritDoc}
      */
     public function run(InputInterface $input = null, OutputInterface $output = null)
     {
-        $this->silex_app->boot();
+        $this->getSilexApplication()->boot();
 
         return parent::run($input, $output);
     }
