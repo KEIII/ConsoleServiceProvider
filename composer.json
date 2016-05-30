@@ -1,5 +1,5 @@
 {
-    "name": "knplabs/console-service-provider",
+    "name": "keiii/console-service-provider",
     "type": "library",
     "description": "Console service provider for Silex",
     "keywords": ["console", "silex"],
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Knp\\": "src/Knp/"
+            "KEIII\\": "src/"
         }
     },
     "autoload-dev" : {
         "psr-4": {
-            "Knp\\Tests\\" : "tests/Knp/"
+            "KEIII\\Tests\\" : "tests/"
         }
     }
 }

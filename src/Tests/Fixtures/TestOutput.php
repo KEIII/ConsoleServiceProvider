@@ -1,6 +1,6 @@
 <?php
 
-namespace Knp\Tests\Fixtures;
+namespace KEIII\Tests\Fixtures;
 
 use Symfony\Component\Console\Output\Output;
 

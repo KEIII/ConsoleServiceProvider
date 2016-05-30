@@ -1,9 +1,9 @@
 <?php
 
-namespace Knp\Tests\Provider;
+namespace KEIII\Tests\Provider;
 
-use Knp\Console\Application as ConsoleApplication;
-use Knp\Provider\ConsoleServiceProvider;
+use KEIII\Console\Application as ConsoleApplication;
+use KEIII\Provider\ConsoleServiceProvider;
 use Silex\Application as SilexApplication;
 use Symfony\Component\Console\Application as BaseConsoleApplication;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Knp\Tests\Fixtures;
+namespace KEIII\Tests\Fixtures;
 
-use Knp\Command\Command;
+use KEIII\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Knp\Console;
+namespace KEIII\Console;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\ConsoleEvents;
