@@ -1,7 +1,7 @@
 # ConsoleServiceProvider
 [![Build Status](https://travis-ci.org/KEIII/ConsoleServiceProvider.svg?branch=master)](https://travis-ci.org/KEIII/ConsoleServiceProvider)
 
-Provides a `Symfony\Component\Console` based console for Silex.
+Provides a `Symfony\Component\Console` based console for Silex 2.
 
 ## Download and Installation
 ```

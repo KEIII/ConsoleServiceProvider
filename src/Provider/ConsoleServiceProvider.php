@@ -3,8 +3,8 @@
 namespace KEIII\Provider;
 
 use KEIII\Console\Application as ConsoleApplication;
-use Silex\Application as SilexApplication;
-use Silex\ServiceProviderInterface;
+use Pimple\Container;
+use Pimple\ServiceProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -13,11 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
 class ConsoleServiceProvider implements ServiceProviderInterface
 {
     /**
-     * @param SilexApplication $app
+     * {@inheritdoc}
      */
-    public function register(SilexApplication $app)
+    public function register(Container $app)
     {
-        $app['console'] = $app->share(function (SilexApplication $app) {
+        $app['console'] = function (Container $app) {
             /**
              * To use Twig we must set up the Request.
              *
@@ -26,7 +26,7 @@ class ConsoleServiceProvider implements ServiceProviderInterface
              */
             try {
                 $app['request'];
-            } catch (\RuntimeException $e) {
+            } catch (\InvalidArgumentException $e) {
                 $app['request'] = new Request();
             }
 
@@ -34,14 +34,6 @@ class ConsoleServiceProvider implements ServiceProviderInterface
             $console->setDispatcher($app['dispatcher']);
 
             return $console;
-        });
-    }
-
-    /**
-     * @param SilexApplication $app
-     */
-    public function boot(SilexApplication $app)
-    {
-        // required by interface
+        };
     }
 }

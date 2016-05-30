@@ -1,6 +1,6 @@
 {
     "name": "keiii/console-service-provider",
-    "version": "1.2.0",
+    "version": "2.0.0",
     "type": "library",
     "description": "Console service provider for Silex",
     "keywords": ["console", "silex"],
@@ -17,11 +17,11 @@
         }
     ],
     "require": {
-        "php": ">=5.3.9",
-        "symfony/console": "~2.7"
+        "php": ">=5.5.9",
+        "symfony/console": "~3.0"
     },
     "require-dev": {
-        "silex/silex": "~1.3",
+        "silex/silex": "~2.0",
         "phpunit/phpunit": ">=4"
     },
     "autoload": {

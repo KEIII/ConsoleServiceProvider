@@ -2,6 +2,7 @@
 
 namespace KEIII\Console;
 
+use Pimple\Container;
 use Silex\Application as SilexApplication;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Input\InputInterface;
@@ -19,9 +20,9 @@ class Application extends BaseApplication
 
     /**
      * Constructor.
-     * @param SilexApplication $app
+     * @param Container $app
      */
-    public function __construct(SilexApplication $app)
+    public function __construct(Container $app)
     {
         $name = isset($app['console.name']) ? $app['console.name'] : null;
         $version = isset($app['console.version']) ? $app['console.version'] : null;
