@@ -1,5 +1,6 @@
 {
     "name": "keiii/console-service-provider",
+    "version": "1.2.0",
     "type": "library",
     "description": "Console service provider for Silex",
     "keywords": ["console", "silex"],
