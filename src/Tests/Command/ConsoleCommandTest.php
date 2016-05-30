@@ -1,15 +1,15 @@
 <?php
 
-namespace Knp\Tests\Command;
+namespace KEIII\Tests\Command;
 
-use Knp\Console\Application as ConsoleApplication;
-use Knp\Console\ConsoleLogListener;
-use Knp\Provider\ConsoleServiceProvider;
-use Knp\Tests\Fixtures\FailedCommand;
-use Knp\Tests\Fixtures\FakeLogger;
-use Knp\Tests\Fixtures\GetSilexApplicationCommand;
-use Knp\Tests\Fixtures\SampleCommand;
-use Knp\Tests\Fixtures\TestOutput;
+use KEIII\Console\Application as ConsoleApplication;
+use KEIII\Console\ConsoleLogListener;
+use KEIII\Provider\ConsoleServiceProvider;
+use KEIII\Tests\Fixtures\FailedCommand;
+use KEIII\Tests\Fixtures\FakeLogger;
+use KEIII\Tests\Fixtures\GetSilexApplicationCommand;
+use KEIII\Tests\Fixtures\SampleCommand;
+use KEIII\Tests\Fixtures\TestOutput;
 use Silex\Application as SilexApplication;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Knp\Provider;
+namespace KEIII\Provider;
 
-use Knp\Console\Application as ConsoleApplication;
+use KEIII\Console\Application as ConsoleApplication;
 use Silex\Application as SilexApplication;
 use Silex\ServiceProviderInterface;
 use Symfony\Component\HttpFoundation\Request;

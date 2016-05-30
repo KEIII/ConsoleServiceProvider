@@ -1,6 +1,6 @@
 <?php
 
-namespace Knp\Console;
+namespace KEIII\Console;
 
 use Silex\Application as SilexApplication;
 use Symfony\Component\Console\Application as BaseApplication;

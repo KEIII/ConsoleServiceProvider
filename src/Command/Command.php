@@ -1,8 +1,8 @@
 <?php
 
-namespace Knp\Command;
+namespace KEIII\Command;
 
-use Knp\Console\Application;
+use KEIII\Console\Application;
 use Silex\Application as SilexApplication;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Knp\Tests\Fixtures;
+namespace KEIII\Tests\Fixtures;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Output\OutputInterface;
