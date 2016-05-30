@@ -44,7 +44,7 @@ class ConsoleLogListener implements EventSubscriberInterface
             $command->getName()
         );
 
-        $this->logger->error($message, ['exception' => $exception]);
+        $this->logger->error($message, array('exception' => $exception));
     }
 
     /**
@@ -52,8 +52,8 @@ class ConsoleLogListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return [
-            ConsoleEvents::EXCEPTION => ['onConsoleError', -4],
-        ];
+        return array(
+            ConsoleEvents::EXCEPTION => array('onConsoleError', -4),
+        );
     }
 }

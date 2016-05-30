@@ -27,7 +27,7 @@ class FakeLogger implements LoggerInterface
     /**
      * {@inheritDoc}
      */
-    public function emergency($message, array $context = [])
+    public function emergency($message, array $context = array())
     {
         $this->fakeLog('emergency', $message);
     }
@@ -35,7 +35,7 @@ class FakeLogger implements LoggerInterface
     /**
      * {@inheritDoc}
      */
-    public function alert($message, array $context = [])
+    public function alert($message, array $context = array())
     {
         $this->fakeLog('alert', $message);
     }
@@ -43,7 +43,7 @@ class FakeLogger implements LoggerInterface
     /**
      * {@inheritDoc}
      */
-    public function critical($message, array $context = [])
+    public function critical($message, array $context = array())
     {
         $this->fakeLog('critical', $message);
     }
@@ -51,7 +51,7 @@ class FakeLogger implements LoggerInterface
     /**
      * {@inheritDoc}
      */
-    public function error($message, array $context = [])
+    public function error($message, array $context = array())
     {
         $this->fakeLog('error', $message);
     }
@@ -59,7 +59,7 @@ class FakeLogger implements LoggerInterface
     /**
      * {@inheritDoc}
      */
-    public function warning($message, array $context = [])
+    public function warning($message, array $context = array())
     {
         $this->fakeLog('warning', $message);
     }
@@ -67,7 +67,7 @@ class FakeLogger implements LoggerInterface
     /**
      * {@inheritDoc}
      */
-    public function notice($message, array $context = [])
+    public function notice($message, array $context = array())
     {
         $this->fakeLog('notice', $message);
     }
@@ -75,7 +75,7 @@ class FakeLogger implements LoggerInterface
     /**
      * {@inheritDoc}
      */
-    public function info($message, array $context = [])
+    public function info($message, array $context = array())
     {
         $this->fakeLog('info', $message);
     }
@@ -83,7 +83,7 @@ class FakeLogger implements LoggerInterface
     /**
      * {@inheritDoc}
      */
-    public function debug($message, array $context = [])
+    public function debug($message, array $context = array())
     {
         $this->fakeLog('debug', $message);
     }
@@ -91,7 +91,7 @@ class FakeLogger implements LoggerInterface
     /**
      * {@inheritDoc}
      */
-    public function log($level, $message, array $context = [])
+    public function log($level, $message, array $context = array())
     {
         $this->fakeLog($level, $message);
     }
@@ -103,7 +103,7 @@ class FakeLogger implements LoggerInterface
      */
     private function fakeLog($level, $message)
     {
-        $log = implode('|', ['logger', $level, $message]);
+        $log = implode('|', array('logger', $level, $message));
         $this->output->write($log);
     }
 }

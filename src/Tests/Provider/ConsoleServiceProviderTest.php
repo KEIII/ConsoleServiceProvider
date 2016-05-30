@@ -15,10 +15,10 @@ class ConsoleServiceProviderTest extends \PHPUnit_Framework_TestCase
     public function testRegisterProvider()
     {
         $app = new SilexApplication();
-        $app->register(new ConsoleServiceProvider(), [
+        $app->register(new ConsoleServiceProvider(), array(
             'console.name' => 'Awesome name',
             'console.version' => '1.2.3',
-        ]);
+        ));
         /** @var ConsoleApplication $console */
         $console = $app['console'];
 

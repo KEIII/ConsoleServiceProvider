@@ -25,10 +25,10 @@ class ConsoleCommandTest extends \PHPUnit_Framework_TestCase
         $app = new SilexApplication();
         $app->register(new ConsoleServiceProvider());
         $output = new BufferedOutput();
-        $input = new ArrayInput([
+        $input = new ArrayInput(array(
             'command' => 'command:sample',
             'name' => 'John Smith',
-        ]);
+        ));
 
         /** @var ConsoleApplication $console */
         $console = $app['console'];
@@ -44,9 +44,9 @@ class ConsoleCommandTest extends \PHPUnit_Framework_TestCase
         $app = new SilexApplication();
         $app->register(new ConsoleServiceProvider());
         $output = new BufferedOutput();
-        $input = new ArrayInput([
+        $input = new ArrayInput(array(
             'command' => 'command:silex',
-        ]);
+        ));
 
         /** @var ConsoleApplication $console */
         $console = $app['console'];
@@ -63,9 +63,9 @@ class ConsoleCommandTest extends \PHPUnit_Framework_TestCase
         $app->register(new ConsoleServiceProvider());
 
         $log_output = new TestOutput();
-        $input = new ArrayInput([
+        $input = new ArrayInput(array(
             'command' => 'command:failed',
-        ]);
+        ));
 
         /** @var EventDispatcher $dispatcher */
         $dispatcher = $app['dispatcher'];
