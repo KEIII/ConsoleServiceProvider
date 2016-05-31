@@ -6,6 +6,7 @@ use KEIII\Console\Application as ConsoleApplication;
 use Silex\Application as SilexApplication;
 use Silex\ServiceProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\RequestContext;
 
 /**
  * Console Service Provider
@@ -13,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ConsoleServiceProvider implements ServiceProviderInterface
 {
     /**
-     * @param SilexApplication $app
+     * {@inheritdoc}
      */
     public function register(SilexApplication $app)
     {
@@ -28,6 +29,34 @@ class ConsoleServiceProvider implements ServiceProviderInterface
                 $app['request'];
             } catch (\RuntimeException $e) {
                 $app['request'] = new Request();
+            }
+
+            // Configuring the Request Context
+            if (isset($app['console.request'])) {
+                /** @var RequestContext $requestContext */
+                $requestContext = $app['request_context'];
+                $requestDefaults = array(
+                    'baseUrl' => '',
+                    'method' => 'GET',
+                    'host' => 'localhost',
+                    'scheme' => 'http',
+                    'httpPort' => 80,
+                    'httpsPort' => 443,
+                    'path' => '/',
+                    'queryString' => '',
+                );
+                $requestParams = array_merge($requestDefaults, $app['console.request']);
+
+                $requestContext
+                    ->setBaseUrl($requestParams['baseUrl'])
+                    ->setMethod($requestParams['method'])
+                    ->setHost($requestParams['host'])
+                    ->setScheme($requestParams['scheme'])
+                    ->setHttpPort($requestParams['httpPort'])
+                    ->setHttpsPort($requestParams['httpsPort'])
+                    ->setPathInfo($requestParams['path'])
+                    ->setQueryString($requestParams['queryString'])
+                ;
             }
 
             $console = new ConsoleApplication($app);
