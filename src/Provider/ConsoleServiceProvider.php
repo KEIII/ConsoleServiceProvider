@@ -5,7 +5,7 @@ namespace KEIII\Provider;
 use KEIII\Console\Application as ConsoleApplication;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\RequestContext;
 
 /**
  * Console Service Provider
@@ -18,16 +18,32 @@ class ConsoleServiceProvider implements ServiceProviderInterface
     public function register(Container $app)
     {
         $app['console'] = function (Container $app) {
-            /**
-             * To use Twig we must set up the Request.
-             *
-             * Configuring the Request Context:
-             * http://symfony.com/doc/current/cookbook/console/sending_emails.html
-             */
-            try {
-                $app['request'];
-            } catch (\InvalidArgumentException $e) {
-                $app['request'] = new Request();
+            // Configuring the Request Context
+            if (isset($app['console.request'])) {
+                /** @var RequestContext $requestContext */
+                $requestContext = $app['request_context'];
+                $requestDefaults = array(
+                    'baseUrl' => '',
+                    'method' => 'GET',
+                    'host' => 'localhost',
+                    'scheme' => 'http',
+                    'httpPort' => 80,
+                    'httpsPort' => 443,
+                    'path' => '/',
+                    'queryString' => '',
+                );
+                $requestParams = array_merge($requestDefaults, $app['console.request']);
+
+                $requestContext
+                    ->setBaseUrl($requestParams['baseUrl'])
+                    ->setMethod($requestParams['method'])
+                    ->setHost($requestParams['host'])
+                    ->setScheme($requestParams['scheme'])
+                    ->setHttpPort($requestParams['httpPort'])
+                    ->setHttpsPort($requestParams['httpsPort'])
+                    ->setPathInfo($requestParams['path'])
+                    ->setQueryString($requestParams['queryString'])
+                ;
             }
 
             $console = new ConsoleApplication($app);
