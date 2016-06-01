@@ -5,7 +5,10 @@ namespace KEIII\Tests\Provider;
 use KEIII\Console\Application as ConsoleApplication;
 use KEIII\Provider\ConsoleServiceProvider;
 use Silex\Application as SilexApplication;
+use Silex\Provider\TwigServiceProvider;
+use Silex\Provider\UrlGeneratorServiceProvider;
 use Symfony\Component\Console\Application as BaseConsoleApplication;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RequestContext;
 
 /**
@@ -34,6 +37,12 @@ class ConsoleServiceProviderTest extends \PHPUnit_Framework_TestCase
                 'url' => 'hello',
             ),
         ));
+        $app->register(new UrlGeneratorServiceProvider());
+        $app->register(new TwigServiceProvider(), array(
+            'twig.path' => __DIR__.'/../Resources/views',
+            'twig.options' => array('cache' => false),
+        ));
+        $app->get('/test.html', function () {})->bind('test');
         $this->console = $app['console'];
     }
 
@@ -56,5 +65,25 @@ class ConsoleServiceProviderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('https', $requestContext->getScheme());
         $this->assertEquals(443, $requestContext->getHttpsPort());
         $this->assertEquals('', $requestContext->getBaseUrl());
+    }
+
+    public function testUrlGenerator()
+    {
+        $app = $this->console->getSilexApplication();
+        /** @var UrlGeneratorInterface $urlGenerator */
+        $urlGenerator = $app['url_generator'];
+        $url = $urlGenerator->generate('test', array(), UrlGeneratorInterface::ABSOLUTE_URL);
+
+        $this->assertEquals('https://example.com/test.html', $url);
+    }
+
+    public function testTwigRender()
+    {
+        $app = $this->console->getSilexApplication();
+        /** @var \Twig_Environment $twig */
+        $twig = $app['twig'];
+        $content = trim($twig->render('test.twig'));
+
+        $this->assertEquals('https://example.com/test.html', $content);
     }
 }
