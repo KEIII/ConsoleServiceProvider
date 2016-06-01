@@ -16,7 +16,7 @@ class Application extends BaseApplication
     /**
      * @var SilexApplication
      */
-    private $silex_app;
+    private $silexApp;
 
     /**
      * Constructor.
@@ -29,7 +29,7 @@ class Application extends BaseApplication
 
         parent::__construct($name, $version);
 
-        $this->silex_app = $app;
+        $this->silexApp = $app;
     }
 
     /**
@@ -37,7 +37,7 @@ class Application extends BaseApplication
      */
     public function getSilexApplication()
     {
-        return $this->silex_app;
+        return $this->silexApp;
     }
 
     /**
