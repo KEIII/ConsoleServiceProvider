@@ -45,7 +45,9 @@ class Application extends BaseApplication
      */
     public function run(InputInterface $input = null, OutputInterface $output = null)
     {
-        $this->getSilexApplication()->boot();
+        $silexApp = $this->getSilexApplication();
+        $silexApp->boot();
+        $silexApp->flush();
 
         return parent::run($input, $output);
     }
