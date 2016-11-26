@@ -1,9 +1,9 @@
 <?php
 
-namespace KEIII\Tests\Provider;
+namespace KEIII\SilexConsole\Tests;
 
-use KEIII\Console\Application as ConsoleApplication;
-use KEIII\Provider\ConsoleServiceProvider;
+use KEIII\SilexConsole\Application as ConsoleApplication;
+use KEIII\SilexConsole\ConsoleServiceProvider;
 use Silex\Application as SilexApplication;
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RequestContext;
 
 /**
- * Test Console Service Provider
+ * Test Console Service Provider.
  */
 class ConsoleServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
@@ -27,32 +27,33 @@ class ConsoleServiceProviderTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $app = new SilexApplication();
-        $app->register(new ConsoleServiceProvider(), array(
+        $app->register(new ConsoleServiceProvider(), [
             'console.name' => 'Awesome name',
             'console.version' => '1.2.3',
-            'console.request' => array(
+            'console.request' => [
                 'host' => 'example.com',
                 'scheme' => 'https',
                 'httpsPort' => 443,
                 'url' => 'hello',
-            ),
-        ));
+            ],
+        ]);
         $app->register(new UrlGeneratorServiceProvider());
-        $app->register(new TwigServiceProvider(), array(
-            'twig.path' => __DIR__.'/../Resources/views',
-            'twig.options' => array('cache' => false),
-        ));
-        $app->get('/test.html', function () {})->bind('test');
+        $app->register(new TwigServiceProvider(), [
+            'twig.path' => __DIR__.'/Resources/views',
+            'twig.options' => ['cache' => false],
+        ]);
+        $app->get('/test.html', function () {
+        })->bind('test');
         $this->console = $app['console'];
     }
 
     public function testRegisterProvider()
     {
-        $this->assertTrue($this->console instanceof ConsoleApplication);
-        $this->assertTrue($this->console instanceof BaseConsoleApplication);
-        $this->assertTrue($this->console->getSilexApplication() instanceof SilexApplication);
-        $this->assertEquals('Awesome name', $this->console->getName());
-        $this->assertEquals('1.2.3', $this->console->getVersion());
+        self::assertTrue($this->console instanceof ConsoleApplication);
+        self::assertTrue($this->console instanceof BaseConsoleApplication);
+        self::assertTrue($this->console->getSilexApplication() instanceof SilexApplication);
+        self::assertEquals('Awesome name', $this->console->getName());
+        self::assertEquals('1.2.3', $this->console->getVersion());
     }
 
     public function testRequestAccess()
@@ -72,7 +73,7 @@ class ConsoleServiceProviderTest extends \PHPUnit_Framework_TestCase
         $app = $this->console->getSilexApplication();
         /** @var UrlGeneratorInterface $urlGenerator */
         $urlGenerator = $app['url_generator'];
-        $url = $urlGenerator->generate('test', array(), UrlGeneratorInterface::ABSOLUTE_URL);
+        $url = $urlGenerator->generate('test', [], UrlGeneratorInterface::ABSOLUTE_URL);
 
         $this->assertEquals('https://example.com/test.html', $url);
     }

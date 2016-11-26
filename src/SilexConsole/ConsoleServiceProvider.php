@@ -1,15 +1,15 @@
 <?php
 
-namespace KEIII\Provider;
+namespace KEIII\SilexConsole;
 
-use KEIII\Console\Application as ConsoleApplication;
+use KEIII\SilexConsole\Application as ConsoleApplication;
 use Silex\Application as SilexApplication;
 use Silex\ServiceProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RequestContext;
 
 /**
- * Console Service Provider
+ * Console Service Provider.
  */
 class ConsoleServiceProvider implements ServiceProviderInterface
 {
@@ -18,7 +18,7 @@ class ConsoleServiceProvider implements ServiceProviderInterface
      */
     public function register(SilexApplication $app)
     {
-        $app['console'] = $app->share(function (SilexApplication $app) {
+        $app['console'] = $app::share(function (SilexApplication $app) {
             /**
              * To use Twig we must set up the Request.
              *
@@ -35,7 +35,7 @@ class ConsoleServiceProvider implements ServiceProviderInterface
             if (isset($app['console.request'])) {
                 /** @var RequestContext $requestContext */
                 $requestContext = $app['request_context'];
-                $requestDefaults = array(
+                $requestDefaults = [
                     'baseUrl' => '',
                     'method' => 'GET',
                     'host' => 'localhost',
@@ -44,7 +44,7 @@ class ConsoleServiceProvider implements ServiceProviderInterface
                     'httpsPort' => 443,
                     'path' => '/',
                     'queryString' => '',
-                );
+                ];
                 $requestParams = array_merge($requestDefaults, $app['console.request']);
 
                 $requestContext

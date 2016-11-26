@@ -1,18 +1,18 @@
 <?php
 
-namespace KEIII\Tests\Fixtures;
+namespace KEIII\SilexConsole\Tests\Fixtures;
 
-use KEIII\Command\Command;
+use KEIII\SilexConsole\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * {@inheritDoc}
+ * {@inheritdoc}
  */
 class GetSilexApplicationCommand extends Command
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function configure()
     {
@@ -20,7 +20,7 @@ class GetSilexApplicationCommand extends Command
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {

@@ -1,22 +1,22 @@
 <?php
 
-namespace KEIII\Tests\Command;
+namespace KEIII\SilexConsole\Tests;
 
-use KEIII\Console\Application as ConsoleApplication;
-use KEIII\Console\ConsoleLogListener;
-use KEIII\Provider\ConsoleServiceProvider;
-use KEIII\Tests\Fixtures\FailedCommand;
-use KEIII\Tests\Fixtures\FakeLogger;
-use KEIII\Tests\Fixtures\GetSilexApplicationCommand;
-use KEIII\Tests\Fixtures\SampleCommand;
-use KEIII\Tests\Fixtures\TestOutput;
+use KEIII\SilexConsole\Application as ConsoleApplication;
+use KEIII\SilexConsole\ConsoleLogListener;
+use KEIII\SilexConsole\ConsoleServiceProvider;
+use KEIII\SilexConsole\Tests\Fixtures\FailedCommand;
+use KEIII\SilexConsole\Tests\Fixtures\FakeLogger;
+use KEIII\SilexConsole\Tests\Fixtures\GetSilexApplicationCommand;
+use KEIII\SilexConsole\Tests\Fixtures\SampleCommand;
+use KEIII\SilexConsole\Tests\Fixtures\TestOutput;
 use Silex\Application as SilexApplication;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
- * Console Command Test
+ * Console Command Test.
  */
 class ConsoleCommandTest extends \PHPUnit_Framework_TestCase
 {
@@ -25,10 +25,10 @@ class ConsoleCommandTest extends \PHPUnit_Framework_TestCase
         $app = new SilexApplication();
         $app->register(new ConsoleServiceProvider());
         $output = new BufferedOutput();
-        $input = new ArrayInput(array(
+        $input = new ArrayInput([
             'command' => 'command:sample',
             'name' => 'John Smith',
-        ));
+        ]);
 
         /** @var ConsoleApplication $console */
         $console = $app['console'];
@@ -44,9 +44,9 @@ class ConsoleCommandTest extends \PHPUnit_Framework_TestCase
         $app = new SilexApplication();
         $app->register(new ConsoleServiceProvider());
         $output = new BufferedOutput();
-        $input = new ArrayInput(array(
+        $input = new ArrayInput([
             'command' => 'command:silex',
-        ));
+        ]);
 
         /** @var ConsoleApplication $console */
         $console = $app['console'];
@@ -63,9 +63,9 @@ class ConsoleCommandTest extends \PHPUnit_Framework_TestCase
         $app->register(new ConsoleServiceProvider());
 
         $log_output = new TestOutput();
-        $input = new ArrayInput(array(
+        $input = new ArrayInput([
             'command' => 'command:failed',
-        ));
+        ]);
 
         /** @var EventDispatcher $dispatcher */
         $dispatcher = $app['dispatcher'];
@@ -79,6 +79,6 @@ class ConsoleCommandTest extends \PHPUnit_Framework_TestCase
         $console->add(new FailedCommand());
         $console->run($input, null);
 
-        $this->assertContains('logger|error|Exception: something went wrong', $log_output->fetch());
+        $this->assertContains('logger|error|RuntimeException: something went wrong', $log_output->fetch());
     }
 }
