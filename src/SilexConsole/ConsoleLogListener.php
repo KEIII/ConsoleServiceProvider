@@ -1,6 +1,6 @@
 <?php
 
-namespace KEIII\Console;
+namespace KEIII\SilexConsole;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\ConsoleEvents;
@@ -8,7 +8,7 @@ use Symfony\Component\Console\Event\ConsoleExceptionEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Console Log Listener
+ * Console Log Listener.
  */
 class ConsoleLogListener implements EventSubscriberInterface
 {
@@ -19,6 +19,7 @@ class ConsoleLogListener implements EventSubscriberInterface
 
     /**
      * Constructor.
+     *
      * @param LoggerInterface $logger
      */
     public function __construct(LoggerInterface $logger)
@@ -27,7 +28,8 @@ class ConsoleLogListener implements EventSubscriberInterface
     }
 
     /**
-     * Log exception
+     * Log exception.
+     *
      * @param ConsoleExceptionEvent $event
      */
     public function onConsoleError(ConsoleExceptionEvent $event)
@@ -44,7 +46,7 @@ class ConsoleLogListener implements EventSubscriberInterface
             $command->getName()
         );
 
-        $this->logger->error($message, array('exception' => $exception));
+        $this->logger->error($message, ['exception' => $exception]);
     }
 
     /**
@@ -52,8 +54,8 @@ class ConsoleLogListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(
-            ConsoleEvents::EXCEPTION => array('onConsoleError', -4),
-        );
+        return [
+            ConsoleEvents::EXCEPTION => ['onConsoleError', -4],
+        ];
     }
 }

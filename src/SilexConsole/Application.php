@@ -1,6 +1,6 @@
 <?php
 
-namespace KEIII\Console;
+namespace KEIII\SilexConsole;
 
 use Pimple\Container;
 use Silex\Application as SilexApplication;
@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Console Application
+ * Console Application.
  */
 class Application extends BaseApplication
 {
@@ -20,6 +20,7 @@ class Application extends BaseApplication
 
     /**
      * Constructor.
+     *
      * @param Container $app
      */
     public function __construct(Container $app)
@@ -41,7 +42,7 @@ class Application extends BaseApplication
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function run(InputInterface $input = null, OutputInterface $output = null)
     {

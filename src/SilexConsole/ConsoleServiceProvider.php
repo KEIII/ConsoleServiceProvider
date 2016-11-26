@@ -1,14 +1,14 @@
 <?php
 
-namespace KEIII\Provider;
+namespace KEIII\SilexConsole;
 
-use KEIII\Console\Application as ConsoleApplication;
+use KEIII\SilexConsole\Application as ConsoleApplication;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 use Symfony\Component\Routing\RequestContext;
 
 /**
- * Console Service Provider
+ * Console Service Provider.
  */
 class ConsoleServiceProvider implements ServiceProviderInterface
 {
@@ -22,7 +22,7 @@ class ConsoleServiceProvider implements ServiceProviderInterface
             if (isset($app['console.request'])) {
                 /** @var RequestContext $requestContext */
                 $requestContext = $app['request_context'];
-                $requestDefaults = array(
+                $requestDefaults = [
                     'baseUrl' => '',
                     'method' => 'GET',
                     'host' => 'localhost',
@@ -31,7 +31,7 @@ class ConsoleServiceProvider implements ServiceProviderInterface
                     'httpsPort' => 443,
                     'path' => '/',
                     'queryString' => '',
-                );
+                ];
                 $requestParams = array_merge($requestDefaults, $app['console.request']);
 
                 $requestContext

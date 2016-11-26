@@ -1,11 +1,11 @@
 <?php
 
-namespace KEIII\Tests\Fixtures;
+namespace KEIII\SilexConsole\Tests\Fixtures;
 
 use Symfony\Component\Console\Output\Output;
 
 /**
- * {@inheritDoc}
+ * {@inheritdoc}
  */
 class TestOutput extends Output
 {
@@ -17,7 +17,7 @@ class TestOutput extends Output
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function doWrite($message, $newline)
     {

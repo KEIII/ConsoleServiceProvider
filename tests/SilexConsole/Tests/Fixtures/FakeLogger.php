@@ -1,12 +1,12 @@
 <?php
 
-namespace KEIII\Tests\Fixtures;
+namespace KEIII\SilexConsole\Tests\Fixtures;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * {@inheritDoc}
+ * {@inheritdoc}
  */
 class FakeLogger implements LoggerInterface
 {
@@ -17,6 +17,7 @@ class FakeLogger implements LoggerInterface
 
     /**
      * Constructor.
+     *
      * @param OutputInterface $output
      */
     public function __construct(OutputInterface $output)
@@ -25,85 +26,86 @@ class FakeLogger implements LoggerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    public function emergency($message, array $context = array())
+    public function emergency($message, array $context = [])
     {
         $this->fakeLog('emergency', $message);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    public function alert($message, array $context = array())
+    public function alert($message, array $context = [])
     {
         $this->fakeLog('alert', $message);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    public function critical($message, array $context = array())
+    public function critical($message, array $context = [])
     {
         $this->fakeLog('critical', $message);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    public function error($message, array $context = array())
+    public function error($message, array $context = [])
     {
         $this->fakeLog('error', $message);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    public function warning($message, array $context = array())
+    public function warning($message, array $context = [])
     {
         $this->fakeLog('warning', $message);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    public function notice($message, array $context = array())
+    public function notice($message, array $context = [])
     {
         $this->fakeLog('notice', $message);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    public function info($message, array $context = array())
+    public function info($message, array $context = [])
     {
         $this->fakeLog('info', $message);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    public function debug($message, array $context = array())
+    public function debug($message, array $context = [])
     {
         $this->fakeLog('debug', $message);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    public function log($level, $message, array $context = array())
+    public function log($level, $message, array $context = [])
     {
         $this->fakeLog($level, $message);
     }
 
     /**
-     * Show log info
+     * Show log info.
+     *
      * @param $level
      * @param $message
      */
     private function fakeLog($level, $message)
     {
-        $log = implode('|', array('logger', $level, $message));
+        $log = implode('|', ['logger', $level, $message]);
         $this->output->write($log);
     }
 }
